@@ -1,0 +1,211 @@
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #45a049;
+    --background-color: #f9f9f9;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+}
+
+nav {
+    background-color: var(--primary-color);
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+.page {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#recipe-list {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.recipe-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+}
+
+.recipe-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.recipe-info {
+    padding: 1rem;
+}
+
+.recipe-tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.tag {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+#shopping-items {
+    list-style: none;
+    padding: 0;
+}
+
+#shopping-items li {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    background: white;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+}
+
+#add-item-form {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    margin-top: 1rem;
+}
+
+.recipe-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+/* Modal Styles */
+.modal {
+    @apply fixed inset-0 bg-black bg-opacity-70 flex items-start justify-center overflow-y-auto p-4;
+    display: none;
+}
+
+.modal-content {
+    @apply bg-white rounded-lg shadow-xl w-full max-w-4xl my-8 relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#recipe-detail {
+    margin-top: 1rem;
+}
+
+.instruction-step {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--background-color);
+    border-radius: 4px;
+}
+
+/* Formular Styles */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.ingredient-row,
+.instruction-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    align-items: flex-start;
+}
+
+.ingredient-row button,
+.instruction-row button {
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+button.secondary {
+    background: #666;
+}
+
+#add-ingredient,
+#add-instruction {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    cursor: pointer;
+} 

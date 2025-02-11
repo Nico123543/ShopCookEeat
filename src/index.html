@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kochbuch App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-green-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Kochbuch App</h1>
+            <ul class="flex gap-4">
+                <li><a href="pages/recipes.html" class="hover:text-green-200">Rezepte</a></li>
+                <li><a href="pages/shopping.html" class="hover:text-green-200">Einkaufsliste</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-4">
+        <div class="max-w-4xl mx-auto mt-8">
+            <h1 class="text-4xl font-bold text-center mb-8">Willkommen in Ihrer Kochbuch App</h1>
+            
+            <div class="grid md:grid-cols-2 gap-8 mt-12">
+                <a href="pages/recipes.html" 
+                   class="block p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-center">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <h2 class="text-2xl font-bold mb-2">Rezepte</h2>
+                        <p class="text-gray-600">Durchstöbern und verwalten Sie Ihre Rezeptsammlung</p>
+                    </div>
+                </a>
+
+                <a href="pages/shopping.html"
+                   class="block p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-center">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <h2 class="text-2xl font-bold mb-2">Einkaufsliste</h2>
+                        <p class="text-gray-600">Verwalten Sie Ihre Einkaufsliste</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="mt-12 text-center">
+                <h2 class="text-2xl font-bold mb-4">Funktionen</h2>
+                <ul class="text-gray-600 space-y-2">
+                    <li>✓ Rezepte erstellen und verwalten</li>
+                    <li>✓ Automatische Einkaufsliste aus Rezepten</li>
+                    <li>✓ Kategorisierung von Rezepten</li>
+                    <li>✓ Portionsgrößen anpassen</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-16 py-8 bg-gray-100">
+        <div class="container mx-auto text-center text-gray-600">
+            <p>© 2024 Kochbuch App - Ihre digitale Küchenhilfe</p>
+        </div>
+    </footer>
+</body>
+</html> 

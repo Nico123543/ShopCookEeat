@@ -1,0 +1,5 @@
+xRezepte erstellen/bearbeiten
+Suchfunktion
+Favoriten
+Bewertungssystem
+Portionsrechner

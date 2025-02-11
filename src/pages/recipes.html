@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezepte - Kochbuch App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-green-600 text-white w-full">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-4xl font-bold hover:text-green-200">Kochbuch App</a>
+                <a href="shopping.html" class="text-xl hover:text-green-200">Einkaufsliste</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4">
+        <!-- Suchleiste und Filter -->
+        <div class="bg-white rounded-lg shadow p-4 mb-6 w-full">
+            <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex-grow">
+                    <input type="text" id="recipe-search" 
+                           placeholder="Rezept suchen..." 
+                           class="w-full p-2 border rounded">
+                </div>
+                <div class="flex gap-4">
+                    <select id="category-filter" 
+                            class="p-2 border rounded min-w-[150px]">
+                        <option value="">Alle Kategorien</option>
+                        <option value="Hauptgericht">Hauptgericht</option>
+                        <option value="Vorspeise">Vorspeise</option>
+                        <option value="Dessert">Dessert</option>
+                        <option value="Salat">Salat</option>
+                    </select>
+                    <button id="add-recipe-btn" 
+                            class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                        + Neues Rezept
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rezeptliste -->
+        <div id="recipe-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Rezepte werden hier dynamisch eingefügt -->
+        </div>
+
+        <!-- Rezept-Form-Modal -->
+        <div id="recipe-form-modal" class="modal">
+            <div class="modal-content p-6">
+                <span class="close absolute right-4 top-4 text-2xl cursor-pointer">&times;</span>
+                <h2 id="form-title" class="text-2xl font-bold mb-6">Neues Rezept</h2>
+                <form id="recipe-form" class="space-y-6">
+                    <div class="space-y-4">
+                        <div>
+                            <label for="recipe-name" class="block font-medium mb-1">Name:</label>
+                            <input type="text" id="recipe-name" required 
+                                   class="w-full p-2 border rounded focus:ring-2 focus:ring-green-500">
+                        </div>
+                        
+                        <div>
+                            <label for="recipe-description" class="block font-medium mb-1">Beschreibung:</label>
+                            <textarea id="recipe-description" required 
+                                    class="w-full p-2 border rounded min-h-[100px] focus:ring-2 focus:ring-green-500"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label for="recipe-category" class="block font-medium mb-1">Kategorie:</label>
+                            <select id="recipe-category" required 
+                                    class="w-full p-2 border rounded focus:ring-2 focus:ring-green-500">
+                                <option value="">Bitte wählen</option>
+                                <option value="Hauptgericht">Hauptgericht</option>
+                                <option value="Vorspeise">Vorspeise</option>
+                                <option value="Dessert">Dessert</option>
+                                <option value="Salat">Salat</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block font-medium mb-1">Zutaten:</label>
+                            <div id="ingredients-list" class="space-y-2">
+                                <!-- Wird dynamisch befüllt -->
+                            </div>
+                            <button type="button" id="add-ingredient" 
+                                    class="mt-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                                + Zutat hinzufügen
+                            </button>
+                        </div>
+                        
+                        <div>
+                            <label class="block font-medium mb-1">Zubereitungsschritte:</label>
+                            <div id="instructions-list" class="space-y-2">
+                                <!-- Wird dynamisch befüllt -->
+                            </div>
+                            <button type="button" id="add-instruction" 
+                                    class="mt-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                                + Schritt hinzufügen
+                            </button>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label for="recipe-prep-time" class="block font-medium mb-1">Zubereitungszeit (Min):</label>
+                                <input type="number" id="recipe-prep-time" required min="1" 
+                                       class="w-full p-2 border rounded focus:ring-2 focus:ring-green-500">
+                            </div>
+                            
+                            <div>
+                                <label for="recipe-servings" class="block font-medium mb-1">Portionen:</label>
+                                <input type="number" id="recipe-servings" required min="1" 
+                                       class="w-full p-2 border rounded focus:ring-2 focus:ring-green-500">
+                            </div>
+                            
+                            <div>
+                                <label for="recipe-difficulty" class="block font-medium mb-1">Schwierigkeit:</label>
+                                <select id="recipe-difficulty" required 
+                                        class="w-full p-2 border rounded focus:ring-2 focus:ring-green-500">
+                                    <option value="leicht">Leicht</option>
+                                    <option value="mittel">Mittel</option>
+                                    <option value="schwer">Schwer</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="recipe-image" class="block font-medium mb-1">Bild-URL:</label>
+                            <input type="url" id="recipe-image" 
+                                   class="w-full p-2 border rounded focus:ring-2 focus:ring-green-500">
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-4 pt-6 border-t">
+                        <button type="button" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600" 
+                                onclick="closeRecipeForm()">Abbrechen</button>
+                        <button type="submit" 
+                                class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Speichern</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Rezept-Detail-Modal -->
+        <div id="recipe-modal" class="modal">
+            <div class="modal-content max-w-4xl">
+                <span class="close absolute right-4 top-4 text-2xl cursor-pointer">&times;</span>
+                <div id="recipe-detail"></div>
+                <div class="flex gap-4 mt-6 border-t pt-4">
+                    <button id="start-cooking" 
+                            class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                        Kochen starten
+                    </button>
+                    <button id="add-to-shopping-list"
+                            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                        Zur Einkaufsliste hinzufügen
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kochansicht-Modal -->
+        <div id="cooking-modal" class="modal">
+            <div class="modal-content max-w-4xl">
+                <span class="close absolute right-4 top-4 text-2xl cursor-pointer">&times;</span>
+                <div id="cooking-view" class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold"></h2>
+                        <div class="flex items-center gap-4">
+                            <button id="prev-step" class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700">
+                                ← Vorheriger Schritt
+                            </button>
+                            <span id="step-counter" class="font-bold"></span>
+                            <button id="next-step" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                                Nächster Schritt →
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h3 class="font-bold mb-4">Benötigte Zutaten</h3>
+                            <ul id="cooking-ingredients" class="space-y-2"></ul>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h3 class="font-bold mb-4">Timer</h3>
+                            <div class="flex gap-4 mb-4">
+                                <input type="number" id="timer-minutes" min="0" max="999" 
+                                       class="w-20 p-2 border rounded" placeholder="Min">
+                                <button id="start-timer" 
+                                        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                    Timer starten
+                                </button>
+                            </div>
+                            <div id="timer-display" class="text-2xl font-bold hidden"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-6 bg-white rounded-lg shadow">
+                        <h3 class="font-bold mb-4">Aktueller Schritt</h3>
+                        <p id="current-step" class="text-lg"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="../js/recipes.js"></script>
+</body>
+</html> 
