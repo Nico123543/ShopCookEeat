@@ -5,7 +5,7 @@ class ShoppingList {
     this.items = savedItems ? JSON.parse(savedItems) : [];
   }
 
-  addItem(name, amount, unit) {
+  addItem(name, amount = '', unit = '') {
     this.items.push({
       id: Date.now().toString(),
       name,

@@ -12,7 +12,8 @@ function renderShoppingList() {
                    onclick="window.handleToggleItem('${item.id}')"
                    class="h-5 w-5 text-green-600">
             <span class="${item.checked ? 'line-through text-gray-500' : ''}">
-                ${item.amount} ${item.unit} ${item.name}
+                ${item.name}
+                ${item.amount || item.unit ? `(${item.amount} ${item.unit})`.trim() : ''}
             </span>
             <button onclick="window.handleDeleteItem('${item.id}')"
                     class="ml-auto text-red-500 hover:text-red-700">
@@ -26,8 +27,8 @@ function renderShoppingList() {
 addItemForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('item-name').value;
-    const amount = document.getElementById('item-amount').value;
-    const unit = document.getElementById('item-unit').value;
+    const amount = document.getElementById('item-amount').value || '';  // Optional
+    const unit = document.getElementById('item-unit').value || '';      // Optional
     
     shoppingList.addItem(name, amount, unit);
     renderShoppingList();

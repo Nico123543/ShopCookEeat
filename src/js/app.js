@@ -303,3 +303,16 @@ window.closeRecipeForm = closeRecipeForm;
 // Initial render
 renderRecipes();
 renderShoppingList();
+
+// Service Worker Registration
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('ServiceWorker registriert');
+            })
+            .catch(err => {
+                console.log('ServiceWorker Registrierung fehlgeschlagen:', err);
+            });
+    });
+}

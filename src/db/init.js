@@ -43,6 +43,28 @@ function initDatabase() {
                     FOREIGN KEY (recipeId) REFERENCES recipes(id)
                 )
             `);
+
+            // Zusätzliche Tabellen für erweiterte Funktionalität
+            db.run(`
+                CREATE TABLE IF NOT EXISTS favorites (
+                    userId TEXT,
+                    recipeId TEXT,
+                    PRIMARY KEY (userId, recipeId),
+                    FOREIGN KEY (recipeId) REFERENCES recipes(id)
+                )
+            `);
+
+            db.run(`
+                CREATE TABLE IF NOT EXISTS ratings (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    recipeId TEXT,
+                    userId TEXT,
+                    rating INTEGER CHECK (rating >= 1 AND rating <= 5),
+                    comment TEXT,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (recipeId) REFERENCES recipes(id)
+                )
+            `);
             resolve();
         });
     });
