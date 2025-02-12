@@ -12,6 +12,40 @@ const db = new sqlite3.Database('src/db/recipes.db');
 app.use(express.json());
 app.use(express.static('src'));
 
+// Neuer Code: Hilfsfunktion zum Erstellen der SQL-Abfrage für Rezepte
+function buildRecipeQuery(search, category) {
+    let query = `
+        SELECT r.*, 
+            GROUP_CONCAT(DISTINCT i.name || '|' || i.amount || '|' || i.unit) as ingredients,
+            GROUP_CONCAT(inst.instruction) as instructions
+        FROM recipes r
+        LEFT JOIN ingredients i ON r.id = i.recipeId
+        LEFT JOIN instructions inst ON r.id = inst.recipeId
+    `;
+    const params = [];
+    const conditions = [];
+    
+    if (search) {
+        conditions.push(`(
+                    LOWER(r.name) LIKE LOWER(?)
+                    OR LOWER(r.description) LIKE LOWER(?)
+                    OR LOWER(i.name) LIKE LOWER(?)
+                    OR LOWER(inst.instruction) LIKE LOWER(?)
+                )`);
+        const searchParam = `%${search}%`;
+        params.push(searchParam, searchParam, searchParam, searchParam);
+    }
+    if (category) {
+        conditions.push("r.category = ?");
+        params.push(category);
+    }
+    if (conditions.length > 0) {
+        query += " WHERE " + conditions.join(" AND ");
+    }
+    query += " GROUP BY r.id";
+    return { query, params };
+}
+
 // API Endpunkte
 app.get('/api/recipes', (req, res) => {
     const { search, category } = req.query;
