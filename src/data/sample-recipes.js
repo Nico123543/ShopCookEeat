@@ -1,5 +1,6 @@
 import { Recipe, Ingredient } from '../models/recipe.js';
 
+// Beispiel-Rezepte
 export const recipes = [
     new Recipe(
         '1',

@@ -1,34 +1,6 @@
 import { Recipe, Ingredient } from '../models/recipe.js';
 import ShoppingList from '../models/shoppingList.js';
-
-// Beispiel-Rezepte
-const recipes = [
-    new Recipe(
-        '1',
-        'Spaghetti Bolognese',
-        'Klassische italienische Pasta mit Hackfleischsoße',
-        [
-            new Ingredient('Spaghetti', 500, 'g'),
-            new Ingredient('Hackfleisch', 400, 'g'),
-            new Ingredient('Tomaten', 400, 'g'),
-            new Ingredient('Zwiebeln', 2, 'Stück'),
-            new Ingredient('Knoblauch', 2, 'Zehen')
-        ],
-        [
-            'Wasser zum Kochen bringen und salzen',
-            'Zwiebeln und Knoblauch fein hacken',
-            'Hackfleisch anbraten',
-            'Tomaten hinzufügen und köcheln lassen',
-            'Pasta al dente kochen',
-            'Mit Salz und Pfeffer abschmecken'
-        ],
-        30,
-        4,
-        'https://example.com/spaghetti.jpg'
-    )
-];
-
-const shoppingList = new ShoppingList();
+import { recipes } from '../data/sample-recipes.js';
 
 // DOM Elements
 const recipeList = document.getElementById('recipe-list');
